@@ -1,0 +1,149 @@
+/* Definições de Cores e Animações Chave */
+:root {
+    --fundo-principal: #0a0a0a;
+    --cor-texto: #e0f7fa;
+    --gradiente-surreal: linear-gradient(145deg, #FF00FF 0%, #00FFFF 50%, #FFFF00 100%); /* Magenta, Ciano, Amarelo */
+    --sombra-neon: 0 0 10px #FF00FF, 0 0 20px #00FFFF;
+}
+
+/* Animação para o Efeito de Pulso (Pulsar) */
+@keyframes pulsar {
+    0% { transform: scale(1); box-shadow: var(--sombra-neon); }
+    50% { transform: scale(1.02); box-shadow: 0 0 25px #FFFF00, 0 0 40px #FF00FF; }
+    100% { transform: scale(1); box-shadow: var(--sombra-neon); }
+}
+
+/* Animação para o Efeito de Flutuação */
+@keyframes flutuar {
+    0% { transform: translateY(0) rotateZ(var(--rotacao, 0deg)); }
+    50% { transform: translateY(-15px) rotateZ(var(--rotacao, 0deg)); }
+    100% { transform: translateY(0) rotateZ(var(--rotacao, 0deg)); }
+}
+
+/* === B A S E === */
+body {
+    background-color: var(--fundo-principal);
+    color: var(--cor-texto);
+    font-family: 'Times New Roman', serif; /* Fonte clássica para contraste surreal */
+    margin: 0;
+    padding: 0;
+    position: relative; 
+    perspective: 1000px; /* Ativa a profundidade 3D no corpo */
+    overflow-x: hidden;
+}
+
+/* O CANVAS (Fundo Animado) */
+#fundoSurreal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+}
+
+/* === M E N U   S U R R E A L === */
+.menu-surreal {
+    position: fixed;
+    top: 50%;
+    right: -50px; /* Inicialmente fora da tela */
+    transform: translateY(-50%) rotate(-90deg); /* Gira 90 graus */
+    z-index: 10;
+    display: flex;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px); /* Efeito de vidro */
+    border-radius: 10px;
+    box-shadow: var(--sombra-neon);
+    animation: pulsar 5s infinite ease-in-out;
+}
+
+.item-menu {
+    color: var(--cor-texto);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+    filter: invert(0.1); /* Efeito de cor distorcida */
+    transition: all 0.3s;
+}
+
+.item-menu:hover {
+    filter: invert(0);
+    text-shadow: 0 0 10px #FFFF00;
+}
+
+/* === C O N T E Ú D O === */
+.hero-section {
+    padding: 150px 20px 250px; /* Mais espaço abaixo para o surrealismo */
+    text-align: center;
+    /* Fundo com transparência sutil */
+    background: rgba(0, 0, 0, 0.3); 
+    min-height: 80vh;
+}
+
+#tituloDistorcido {
+    font-size: 5em;
+    font-weight: 900;
+    /* Aplica o gradiente de cor vibrante ao texto */
+    background: var(--gradiente-surreal); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: var(--sombra-neon);
+    transform: skewX(-5deg); /* Distorção */
+}
+
+.subtitulo-flutuante {
+    font-style: italic;
+    font-size: 1.5em;
+    animation: flutuar 6s infinite ease-in-out; /* Animação flutuante */
+}
+
+/* Cards Flutuantes (3D) */
+.content-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    position: relative;
+    z-index: 5;
+    margin-top: -150px; /* Sobrepõe a seção anterior */
+}
+
+.card-flutuante {
+    background: rgba(30, 30, 30, 0.6);
+    border-radius: 30px;
+    padding: 40px;
+    margin: 40px;
+    width: 350px;
+    border: 3px solid;
+    border-image: var(--gradiente-surreal) 1;
+    box-shadow: var(--sombra-neon);
+    animation: flutuar 8s infinite alternate ease-in-out; /* Flutuação mais lenta */
+    transform: rotateZ(var(--rotacao)); /* Usa a rotação definida no HTML */
+    transition: transform 0.8s;
+}
+
+.card-flutuante:hover {
+    transform: rotateX(10deg) rotateY(10deg) scale(1.05); /* Efeito 3D ao passar o mouse */
+}
+
+/* Seção que Pulsa */
+.secao-pulsante {
+    width: 100%;
+    margin-top: 50px;
+    padding: 40px;
+    text-align: center;
+    background: rgba(10, 10, 10, 0.9);
+    border-top: 5px solid #FFFF00;
+    animation: pulsar 4s infinite ease-in-out;
+}
+
+.texto-pulsante {
+    animation: pulsar 2s infinite linear;
+    text-shadow: 0 0 5px #FF00FF;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: var(--fundo-principal);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
