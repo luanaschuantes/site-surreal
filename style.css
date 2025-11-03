@@ -1,113 +1,94 @@
+/* (Mantenha as definições de :root, keyframes e base do código anterior) */
+
 /* Definições de Cores e Animações Chave */
 :root {
     --fundo-principal: #0a0a0a;
     --cor-texto: #e0f7fa;
-    --gradiente-surreal: linear-gradient(145deg, #FF00FF 0%, #00FFFF 50%, #FFFF00 100%); /* Magenta, Ciano, Amarelo */
+    --gradiente-surreal: linear-gradient(145deg, #FF00FF 0%, #00FFFF 50%, #FFFF00 100%); 
     --sombra-neon: 0 0 10px #FF00FF, 0 0 20px #00FFFF;
+    --gradiente-duplo: linear-gradient(90deg, #111 50%, #eee 50%);
 }
 
-/* Animação para o Efeito de Pulso (Pulsar) */
-@keyframes pulsar {
-    0% { transform: scale(1); box-shadow: var(--sombra-neon); }
-    50% { transform: scale(1.02); box-shadow: 0 0 25px #FFFF00, 0 0 40px #FF00FF; }
-    100% { transform: scale(1); box-shadow: var(--sombra-neon); }
-}
+/* (Mantenha o CSS para body, #fundoSurreal, .menu-surreal, .hero-section, #tituloDistorcido, .subtitulo-flutuante, .content-section) */
 
-/* Animação para o Efeito de Flutuação */
-@keyframes flutuar {
-    0% { transform: translateY(0) rotateZ(var(--rotacao, 0deg)); }
-    50% { transform: translateY(-15px) rotateZ(var(--rotacao, 0deg)); }
-    100% { transform: translateY(0) rotateZ(var(--rotacao, 0deg)); }
-}
 
-/* === B A S E === */
-body {
-    background-color: var(--fundo-principal);
-    color: var(--cor-texto);
-    font-family: 'Times New Roman', serif; /* Fonte clássica para contraste surreal */
-    margin: 0;
-    padding: 0;
-    position: relative; 
-    perspective: 1000px; /* Ativa a profundidade 3D no corpo */
-    overflow-x: hidden;
-}
+/* === N O V O S   E L E M E N T O S === */
 
-/* O CANVAS (Fundo Animado) */
-#fundoSurreal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1;
-}
-
-/* === M E N U   S U R R E A L === */
-.menu-surreal {
-    position: fixed;
-    top: 50%;
-    right: -50px; /* Inicialmente fora da tela */
-    transform: translateY(-50%) rotate(-90deg); /* Gira 90 graus */
-    z-index: 10;
-    display: flex;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px); /* Efeito de vidro */
-    border-radius: 10px;
-    box-shadow: var(--sombra-neon);
-    animation: pulsar 5s infinite ease-in-out;
-}
-
-.item-menu {
-    color: var(--cor-texto);
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.2em;
-    filter: invert(0.1); /* Efeito de cor distorcida */
-    transition: all 0.3s;
-}
-
-.item-menu:hover {
-    filter: invert(0);
-    text-shadow: 0 0 10px #FFFF00;
-}
-
-/* === C O N T E Ú D O === */
-.hero-section {
-    padding: 150px 20px 250px; /* Mais espaço abaixo para o surrealismo */
-    text-align: center;
-    /* Fundo com transparência sutil */
-    background: rgba(0, 0, 0, 0.3); 
-    min-height: 80vh;
-}
-
-#tituloDistorcido {
-    font-size: 5em;
-    font-weight: 900;
-    /* Aplica o gradiente de cor vibrante ao texto */
-    background: var(--gradiente-surreal); 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: var(--sombra-neon);
-    transform: skewX(-5deg); /* Distorção */
-}
-
-.subtitulo-flutuante {
+/* Citações Flutuantes (Texto Aleatório) */
+.citacao-flutuante {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.4); /* Quase transparente */
     font-style: italic;
-    font-size: 1.5em;
-    animation: flutuar 6s infinite ease-in-out; /* Animação flutuante */
+    transform: rotate(15deg); /* Gira para desorientar */
+    pointer-events: none; /* Permite clicar através */
+    z-index: 2;
+    animation: flutuar 10s infinite alternate ease-in-out;
+    text-shadow: 0 0 3px #00FFFF;
 }
 
-/* Cards Flutuantes (3D) */
-.content-section {
+/* Seções de Texto Aprofundado */
+.secao-texto-surreal {
+    width: 80%;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05); /* Mais sutil que os cards */
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    border-left: 5px solid #FF00FF;
+}
+
+.secao-texto-surreal h3 {
+    text-align: center;
+    color: #FFFF00;
+    text-shadow: 0 0 8px #FFFF00;
+}
+
+/* Card de Visão Dupla (O MAIS SURREAL) */
+.card-visao-dupla {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 50px 20px;
-    position: relative;
-    z-index: 5;
-    margin-top: -150px; /* Sobrepõe a seção anterior */
+    width: 70%;
+    height: 300px;
+    margin: 80px auto;
+    border-radius: 20px;
+    overflow: hidden; /* Garante que os lados fiquem dentro */
+    box-shadow: 0 0 30px 10px rgba(0, 255, 255, 0.5);
+    transform: perspective(1000px) rotateY(15deg); /* Fixa em 3D para o efeito */
+    transition: transform 0.6s ease;
 }
 
+.card-visao-dupla:hover {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.lado-claro, .lado-escuro {
+    width: 50%;
+    padding: 30px;
+    transition: all 0.5s;
+}
+
+.lado-claro {
+    background-color: #ffffff;
+    color: #111111;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%); /* Borda diagonal "quebrada" */
+}
+
+.lado-escuro {
+    background-color: #111111;
+    color: #00FFFF;
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); /* Borda diagonal "quebrada" */
+}
+
+.lado-claro:hover {
+    transform: translateX(-10px);
+}
+
+.lado-escuro:hover {
+    transform: translateX(10px);
+}
+
+/* Garante que o texto dos cards flutuantes originais continuem bons */
 .card-flutuante {
+    /* Mantido do código anterior */
     background: rgba(30, 30, 30, 0.6);
     border-radius: 30px;
     padding: 40px;
@@ -116,34 +97,9 @@ body {
     border: 3px solid;
     border-image: var(--gradiente-surreal) 1;
     box-shadow: var(--sombra-neon);
-    animation: flutuar 8s infinite alternate ease-in-out; /* Flutuação mais lenta */
-    transform: rotateZ(var(--rotacao)); /* Usa a rotação definida no HTML */
+    animation: flutuar 8s infinite alternate ease-in-out; 
+    transform: rotateZ(var(--rotacao));
     transition: transform 0.8s;
 }
 
-.card-flutuante:hover {
-    transform: rotateX(10deg) rotateY(10deg) scale(1.05); /* Efeito 3D ao passar o mouse */
-}
-
-/* Seção que Pulsa */
-.secao-pulsante {
-    width: 100%;
-    margin-top: 50px;
-    padding: 40px;
-    text-align: center;
-    background: rgba(10, 10, 10, 0.9);
-    border-top: 5px solid #FFFF00;
-    animation: pulsar 4s infinite ease-in-out;
-}
-
-.texto-pulsante {
-    animation: pulsar 2s infinite linear;
-    text-shadow: 0 0 5px #FF00FF;
-}
-
-footer {
-    padding: 20px;
-    text-align: center;
-    background-color: var(--fundo-principal);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
+/* (Mantenha o CSS para .secao-pulsante, .texto-pulsante, footer) */
